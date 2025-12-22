@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | UI/UX & Dev</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#0a0a0a',
+                        card: '#121212',
+                        acid: '#d4ff00', // Gen Z Acid Green
+                        gray: '#888888'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4ff00;
+        }
+
+        /* Noise Texture (Anti-AI Look) */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Custom Utilities */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Marquee Animation */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Hover Reveal Effect */
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        .blob {
+            position: absolute;
+            background: #d4ff00;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: -1;
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(30px, -30px);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-dark text-white font-sans selection:bg-acid selection:text-black overflow-x-hidden">
+
+    <div class="noise-overlay"></div>
+
+    <div class="blob w-96 h-96 top-0 left-0"></div>
+    <div class="blob w-80 h-80 bottom-0 right-0" style="animation-delay: 2s; background: #fff;"></div>
+
+    <nav id="navbar"
+        class="fixed w-full z-40 top-0 px-6 py-4 flex justify-between items-center transition-all duration-300 mix-blend-difference">
+        <div class="text-xl font-display font-bold tracking-tighter text-white">overtime.studio</div>
+        <div class="hidden md:flex gap-8 text-sm text-gray-300">
+            <a href="#work" class="hover:text-acid transition-colors">Projects</a>
+            <a href="#about" class="hover:text-acid transition-colors">About</a>
+            <a href="#contact" class="hover:text-acid transition-colors">Contact</a>
+        </div>
+        <a href="mailto:hello@alex.dev"
+            class="px-5 py-2 border border-white/20 rounded-full text-xs font-medium text-white hover:bg-white hover:text-black transition-all duration-300">
+            Let's Talk
+        </a>
+    </nav>
+
+    <main class="pt-32 pb-20 px-4 md:px-8 max-w-7xl mx-auto">
+
+        <section class="mb-24">
+            <div class="flex items-center gap-3 mb-6 animate-fade-in-up">
+                <span class="relative flex h-3 w-3">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-acid opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-acid"></span>
+                </span>
+                <span class="text-sm font-display tracking-widest uppercase text-gray-400">Available for
+                    freelance</span>
+            </div>
+
+            <h1 class="text-6xl md:text-8xl font-display font-bold leading-[0.9] tracking-tighter mb-8">
+                DESIGNING <br>
+                <span class="text-gray-600">INTERFACES</span> & <br>
+                WRITING <i class="font-serif font-light text-acid">code.</i>
+            </h1>
+
+            <p class="text-gray-400 max-w-xl text-lg md:text-xl leading-relaxed">
+                Saya menyatukan estetika desain dengan kode yang bersih. Fokus pada pengalaman pengguna yang intuitif
+                dan visual yang berdampak.
+            </p>
+        </section>
+
+        <div class="w-full border-y border-white/10 py-4 mb-24 overflow-hidden relative rotate-1">
+            <div class="marquee-container">
+                <div class="marquee-content font-display text-4xl md:text-6xl font-bold uppercase text-transparent stroke-text"
+                    style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">
+                    UI/UX Design &nbsp;•&nbsp; Frontend Dev &nbsp;•&nbsp; Motion &nbsp;•&nbsp; Branding &nbsp;•&nbsp;
+                    Prototyping &nbsp;•&nbsp;
+                    UI/UX Design &nbsp;•&nbsp; Frontend Dev &nbsp;•&nbsp; Motion &nbsp;•&nbsp; Branding &nbsp;•&nbsp;
+                    Prototyping &nbsp;•&nbsp;
+                </div>
+            </div>
+        </div>
+
+        <section id="work" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[300px]">
+
+            <div
+                class="glass-card col-span-1 md:col-span-2 row-span-1 p-8 rounded-3xl flex flex-col justify-between relative overflow-hidden group">
+                <div
+                    class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-40 transition-opacity duration-500">
+                    <i class="ph ph-arrow-up-right text-6xl"></i>
+                </div>
+                <div>
+                    <h3 class="text-gray-400 text-sm font-mono mb-2">01. PHILOSOPHY</h3>
+                    <h2 class="text-2xl md:text-3xl font-display font-semibold">Minimalism is not about removing things,
+                        it's about adding the right things.</h2>
+                </div>
+                <div class="flex gap-2 mt-4">
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs border border-white/10">Figma</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs border border-white/10">React</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs border border-white/10">Tailwind</span>
+                </div>
+            </div>
+
+            <div
+                class="project-card col-span-1 md:col-span-1 row-span-2 rounded-3xl relative overflow-hidden cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop"
+                    class="w-full h-full object-cover grayscale transition-all duration-700" alt="Project 1">
+                <div
+                    class="project-overlay absolute inset-0 bg-black/60 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300">
+                    <h3 class="text-xl font-bold font-display">E-Commerce App</h3>
+                    <p class="text-sm text-gray-300">Mobile Redesign • 2024</p>
+                </div>
+            </div>
+
+            <div
+                class="glass-card col-span-1 rounded-3xl p-6 flex flex-col justify-center items-center text-center gap-4 hover:bg-white/5 transition-colors">
+                <div class="bg-acid w-12 h-12 rounded-full flex items-center justify-center text-black">
+                    <i class="ph-bold ph-code text-2xl"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl">Development</h3>
+                <p class="text-sm text-gray-400 leading-tight">Membangun website modern yang cepat, SEO-friendly, dan
+                    scalable.</p>
+            </div>
+
+            <div
+                class="project-card col-span-1 md:col-span-2 row-span-1 rounded-3xl relative overflow-hidden cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1481487484168-9b995ecc168d?q=80&w=1000&auto=format&fit=crop"
+                    class="w-full h-full object-cover grayscale transition-all duration-700" alt="Project 2">
+                <div
+                    class="project-overlay absolute inset-0 bg-black/60 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300">
+                    <h3 class="text-xl font-bold font-display">Fintech Dashboard</h3>
+                    <p class="text-sm text-gray-300">Web App • 2023</p>
+                </div>
+            </div>
+
+            <div
+                class="glass-card col-span-1 rounded-3xl p-6 flex flex-col justify-between group hover:bg-acid hover:text-black transition-colors duration-300 cursor-pointer">
+                <div class="flex justify-between items-start">
+                    <i class="ph-bold ph-instagram-logo text-3xl"></i>
+                    <i class="ph-bold ph-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i>
+                </div>
+                <div>
+                    <p class="font-bold font-display text-lg">Instagram</p>
+                    <p class="text-xs opacity-60">@username</p>
+                </div>
+            </div>
+
+            <div
+                class="bg-white text-black col-span-1 md:col-span-1 rounded-3xl p-6 flex flex-col justify-between overflow-hidden relative group cursor-pointer">
+                <div
+                    class="absolute w-24 h-24 bg-acid rounded-full -top-10 -right-10 blur-xl group-hover:scale-150 transition-transform duration-500">
+                </div>
+                <i class="ph-bold ph-paper-plane-tilt text-3xl relative z-10"></i>
+                <div class="relative z-10">
+                    <h3 class="font-display font-bold text-2xl leading-none mb-1">Start a<br>Project</h3>
+                    <p class="text-xs font-mono mt-2">Let's work together</p>
+                </div>
+            </div>
+
+        </section>
+
+        <footer
+            class="mt-24 border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-sm font-mono">
+            <p>&copy; 2024 Overtime Studio Portfolio. All Rights Reserved.</p>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-acid">LinkedIn</a>
+                <a href="#" class="hover:text-acid">Dribbble</a>
+                <a href="#" class="hover:text-acid">Github</a>
+            </div>
+            <p>Made with ❤️ and Tailwind</p>
+        </footer>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, observerOptions);
+
+            // Select all grid items for animation
+            const gridItems = document.querySelectorAll('.glass-card, .project-card, section > div');
+            gridItems.forEach(item => {
+                item.classList.add('transition-all', 'duration-700', 'ease-out', 'opacity-0', 'translate-y-10');
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+
+</html>
